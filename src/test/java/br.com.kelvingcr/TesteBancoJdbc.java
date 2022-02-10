@@ -1,12 +1,15 @@
 package br.com.kelvingcr;
 
-import br.com.kelvingcr.conexaojdbc.SingleConnection;
+import br.com.kelvingcr.dao.UserPosDAO;
+import br.com.kelvingcr.model.Userposjava;
 import org.junit.Test;
 
 public class TesteBancoJdbc {
 
     @Test
     public void initBanco(){
-        SingleConnection.getConnection();
+        UserPosDAO userPosDAO = new UserPosDAO();
+        Userposjava user = new Userposjava(2L, "leandro", "leandro@gmail.com");
+        userPosDAO.salvar(user);
     }
 }
