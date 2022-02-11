@@ -12,4 +12,19 @@ public class TesteBancoJdbc {
         Userposjava user = new Userposjava(2L, "leandro", "leandro@gmail.com");
         userPosDAO.salvar(user);
     }
+
+    @Test
+    public void initListar(){
+        UserPosDAO userPosDAO = new UserPosDAO();
+        for(Userposjava users : userPosDAO.listar()){
+            System.out.println(users.toString());
+        }
+    }
+
+    @Test
+    public void buscarPorId(){
+        UserPosDAO userPosDAO = new UserPosDAO();
+        System.out.println(userPosDAO.buscar(2L).toString());
+    }
+
 }

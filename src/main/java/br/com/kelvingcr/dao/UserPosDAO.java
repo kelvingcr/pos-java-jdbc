@@ -5,7 +5,10 @@ import br.com.kelvingcr.model.Userposjava;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserPosDAO {
 
@@ -32,6 +35,42 @@ public class UserPosDAO {
             }
             e.printStackTrace();
         }
+    }
+
+    public List<Userposjava> listar(){
+        List<Userposjava> list = new ArrayList<>();
+        String sql = "select * from userpostjava";
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet resultado = statement.executeQuery();
+            while (resultado.next()){
+                Userposjava userposjava = new Userposjava(
+                        resultado.getLong("id"),
+                        resultado.getString("nome"),
+                        resultado.getString("email")
+                                );
+                list.add(userposjava);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+    public Userposjava buscar(Long id) {
+        Userposjava obj = new Userposjava();
+        String sql = "select * from userpostjava where id = " + id;
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet resultado = statement.executeQuery();
+            while (resultado.next()) {
+                obj.setId(resultado.getLong("id"));
+                obj.setNome(resultado.getString("nome"));
+                obj.setEmail(resultado.getString("email"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return obj;
     }
 
 }
