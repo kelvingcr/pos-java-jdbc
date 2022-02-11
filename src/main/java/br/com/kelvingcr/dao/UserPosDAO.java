@@ -18,7 +18,7 @@ public class UserPosDAO {
         connection = SingleConnection.getConnection();
     }
 
-    public void salvar(Userposjava userposjava){
+    public void salvar(Userposjava userposjava) {
         String sql = "insert into userpostjava (id, nome, email) VALUES (?, ?, ?)";
         try {
             PreparedStatement insert = connection.prepareStatement(sql);
@@ -37,18 +37,18 @@ public class UserPosDAO {
         }
     }
 
-    public List<Userposjava> listar(){
+    public List<Userposjava> listar() {
         List<Userposjava> list = new ArrayList<>();
         String sql = "select * from userpostjava";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             ResultSet resultado = statement.executeQuery();
-            while (resultado.next()){
+            while (resultado.next()) {
                 Userposjava userposjava = new Userposjava(
                         resultado.getLong("id"),
                         resultado.getString("nome"),
                         resultado.getString("email")
-                                );
+                );
                 list.add(userposjava);
             }
         } catch (SQLException e) {
@@ -56,6 +56,7 @@ public class UserPosDAO {
         }
         return list;
     }
+
     public Userposjava buscar(Long id) {
         Userposjava obj = new Userposjava();
         String sql = "select * from userpostjava where id = " + id;
@@ -71,6 +72,25 @@ public class UserPosDAO {
             e.printStackTrace();
         }
         return obj;
+    }
+
+    public void atualizarUsuario(Userposjava obj) {
+        String sql = "UPDATE userpostjava SET nome = ? where id = " + obj.getId();
+
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, obj.getNome());
+            statement.execute();
+            connection.commit();
+        } catch (SQLException e) {
+            try {
+                connection.rollback();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+            e.printStackTrace();
+        }
+
     }
 
 }

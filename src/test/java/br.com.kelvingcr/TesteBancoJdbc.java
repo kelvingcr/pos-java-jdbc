@@ -27,4 +27,13 @@ public class TesteBancoJdbc {
         System.out.println(userPosDAO.buscar(2L).toString());
     }
 
+    @Test
+    public void initAtualizar(){
+        UserPosDAO userPosDAO = new UserPosDAO();
+        Userposjava obj = userPosDAO.buscar(1L);
+        obj.setNome("Elias");
+
+        userPosDAO.atualizarUsuario(obj);
+    }
+
 }
