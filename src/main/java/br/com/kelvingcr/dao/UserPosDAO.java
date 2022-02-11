@@ -92,4 +92,20 @@ public class UserPosDAO {
 
     }
 
+    public void deletar(Long id){
+        String sql = "DELETE from userpostjava where id = " + id;
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.execute();
+            connection.commit();
+        } catch (SQLException e) {
+            try {
+                connection.rollback();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+            e.printStackTrace();
+        }
+    }
+
 }

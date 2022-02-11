@@ -36,4 +36,14 @@ public class TesteBancoJdbc {
         userPosDAO.atualizarUsuario(obj);
     }
 
+    @Test
+    public void initDeletar() {
+        try {
+            UserPosDAO userPosDAO = new UserPosDAO();
+            userPosDAO.deletar(4L);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
 }
