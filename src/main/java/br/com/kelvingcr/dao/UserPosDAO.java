@@ -19,12 +19,11 @@ public class UserPosDAO {
     }
 
     public void salvar(Userposjava userposjava) {
-        String sql = "insert into userpostjava (id, nome, email) VALUES (?, ?, ?)";
+        String sql = "insert into userpostjava (nome, email) VALUES (?, ?)";
         try {
             PreparedStatement insert = connection.prepareStatement(sql);
-            insert.setLong(1, userposjava.getId());
-            insert.setString(2, userposjava.getNome());
-            insert.setString(3, userposjava.getEmail());
+            insert.setString(1, userposjava.getNome());
+            insert.setString(2, userposjava.getEmail());
             insert.execute();
             connection.commit(); //salva no banco
         } catch (SQLException e) {

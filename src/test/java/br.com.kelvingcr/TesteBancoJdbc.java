@@ -9,7 +9,7 @@ public class TesteBancoJdbc {
     @Test
     public void initBanco(){
         UserPosDAO userPosDAO = new UserPosDAO();
-        Userposjava user = new Userposjava(2L, "leandro", "leandro@gmail.com");
+        Userposjava user = new Userposjava(null, "caroline", "caroline@gmail.com");
         userPosDAO.salvar(user);
     }
 
