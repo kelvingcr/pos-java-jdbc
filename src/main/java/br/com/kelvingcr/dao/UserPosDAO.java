@@ -1,6 +1,7 @@
 package br.com.kelvingcr.dao;
 
 import br.com.kelvingcr.conexaojdbc.SingleConnection;
+import br.com.kelvingcr.model.BeanUserFone;
 import br.com.kelvingcr.model.Userposjava;
 
 import java.sql.Connection;
@@ -106,6 +107,30 @@ public class UserPosDAO {
             }
             e.printStackTrace();
         }
+    }
+    public List<BeanUserFone> listaUserFone(Long id){
+        String sql = " select nome, numero, email from telefoneuser as fone" +
+                " inner join userpostjava as userp" +
+                " on fone.usuario_id = userp.id" +
+                " where userp.id = " + id;
+        List<BeanUserFone> list = new ArrayList<>();
+
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet resultSet = statement.executeQuery();
+
+            while(resultSet.next()){
+                BeanUserFone beanUserFone = new BeanUserFone();
+                beanUserFone.setNome(resultSet.getString("nome"));
+                beanUserFone.setNumero(resultSet.getString("numero"));
+                beanUserFone.setEmail(resultSet.getString("email"));
+                list.add(beanUserFone);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
     }
 
 }

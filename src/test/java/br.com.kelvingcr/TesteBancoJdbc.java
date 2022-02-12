@@ -2,6 +2,7 @@ package br.com.kelvingcr;
 
 import br.com.kelvingcr.dao.TelefoneDAO;
 import br.com.kelvingcr.dao.UserPosDAO;
+import br.com.kelvingcr.model.BeanUserFone;
 import br.com.kelvingcr.model.Telefone;
 import br.com.kelvingcr.model.Userposjava;
 import org.junit.Test;
@@ -66,5 +67,12 @@ public class TesteBancoJdbc {
         telefoneDAO.adicionarTelefone(telefone);
     }
 
+    @Test
+    public void initlistarUserFone(){
+        UserPosDAO userPosDAO = new UserPosDAO();
 
+        for(BeanUserFone beanUserFone : userPosDAO.listaUserFone(1L)){
+            System.out.println(beanUserFone);
+        }
+    }
 }
