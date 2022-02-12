@@ -1,0 +1,61 @@
+package br.com.kelvingcr.model;
+
+public class Telefone {
+
+    private Long id;
+    private String numero;
+    private String tipo;
+    private String usuario_id;
+
+    public Telefone() {
+    }
+
+    public Telefone(Long id, String numero, String tipo, String usuario_id) {
+        this.id = id;
+        this.numero = numero;
+        this.tipo = tipo;
+        this.usuario_id = usuario_id;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getNumero() {
+        return numero;
+    }
+
+    public void setNumero(String numero) {
+        this.numero = numero;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public String getUsuario_id() {
+        return usuario_id;
+    }
+
+    public void setUsuario_id(String usuario_id) {
+        this.usuario_id = usuario_id;
+    }
+
+    @Override
+    public String toString() {
+        return "Telefone{" +
+                "id=" + id +
+                ", numero='" + numero + '\'' +
+                ", tipo='" + tipo + '\'' +
+                ", usuario_id='" + usuario_id + '\'' +
+                '}';
+    }
+}
