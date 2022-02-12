@@ -5,12 +5,12 @@ public class Telefone {
     private Long id;
     private String numero;
     private String tipo;
-    private String usuario_id;
+    private Long usuario_id;
 
     public Telefone() {
     }
 
-    public Telefone(Long id, String numero, String tipo, String usuario_id) {
+    public Telefone(Long id, String numero, String tipo, Long usuario_id) {
         this.id = id;
         this.numero = numero;
         this.tipo = tipo;
@@ -41,11 +41,11 @@ public class Telefone {
         this.tipo = tipo;
     }
 
-    public String getUsuario_id() {
+    public Long getUsuario_id() {
         return usuario_id;
     }
 
-    public void setUsuario_id(String usuario_id) {
+    public void setUsuario_id(Long usuario_id) {
         this.usuario_id = usuario_id;
     }
 

@@ -2,6 +2,7 @@ package br.com.kelvingcr;
 
 import br.com.kelvingcr.dao.TelefoneDAO;
 import br.com.kelvingcr.dao.UserPosDAO;
+import br.com.kelvingcr.model.Telefone;
 import br.com.kelvingcr.model.Userposjava;
 import org.junit.Test;
 
@@ -51,6 +52,18 @@ public class TesteBancoJdbc {
     public void initBuscarTelefonePorUsuario(){
         TelefoneDAO telefoneDAO = new TelefoneDAO();
         System.out.println(telefoneDAO.buscarTelefoneDeUsuario(2L).toString());
+    }
+
+    @Test
+    public void initSalvarTelefone(){
+        TelefoneDAO telefoneDAO = new TelefoneDAO();
+        Telefone telefone = new Telefone();
+
+        telefone.setNumero("9819118");
+        telefone.setTipo("fixo");
+        telefone.setUsuario_id(2l);
+
+        telefoneDAO.adicionarTelefone(telefone);
     }
 
 

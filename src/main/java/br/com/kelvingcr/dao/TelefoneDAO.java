@@ -29,12 +29,30 @@ public class TelefoneDAO {
                 tel.setId(resultSet.getLong(1));
                 tel.setNumero(resultSet.getString(2));
                 tel.setTipo(resultSet.getString(3));
-                tel.setUsuario_id(resultSet.getString(4));
+                tel.setUsuario_id(resultSet.getLong(4));
                 list.add(tel);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return list;
+    }
+    public void adicionarTelefone(Telefone obj){
+        String sql = "insert into telefoneuser (numero, tipo, usuario_id) values (?, ?, ?)";
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, obj.getNumero());
+            statement.setString(2, obj.getTipo());
+            statement.setLong(3, obj.getUsuario_id());
+            statement.execute();
+            connection.commit();
+        } catch (SQLException e) {
+            try {
+                connection.rollback();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+            e.printStackTrace();
+        }
     }
 }
